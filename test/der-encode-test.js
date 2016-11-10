@@ -30,6 +30,18 @@ describe('asn1.js DER encoder', function() {
     });
   }
 
+  test('should encode real zero', function () {
+    this.real();
+  }, 0, '0900');
+
+  test('should encode real number', function () {
+    this.real();
+  }, 1.2, '090733312e32652b30');
+
+  test('should encode real number', function () {
+    this.real();
+  }, 1, '090733312e32652b30');
+
   test('should encode objDesc', function() {
     this.objDesc();
   }, new Buffer('280'), '0703323830');
