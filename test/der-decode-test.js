@@ -101,13 +101,21 @@ describe('asn1.js DER decoder', function() {
     this.real();
   }, '090141', -Infinity);
 
-  test('should decode real 1', function() {
+  test('should decode real 1 (nr3)', function() {
     this.real();
-  }, '090633312e452b30', 1);
+  }, '090603312e452b30', 1);
 
-  test('should decode real 1.2', function() {
+  test('should decode real 1.2 (nr3)', function() {
     this.real();
-  }, '090733312e32452b30', 1.2);
+  }, '090703312e32452b30', 1.2);
+
+  test('should decode real 1.2 (nr2)', function() {
+    this.real();
+  }, '090402312e32', 1.2);
+
+  test('should decode real 1 (nr1)', function() {
+    this.real();
+  }, '09020131', 1);
 
   test('should decode objDesc', function() {
     this.objDesc();
