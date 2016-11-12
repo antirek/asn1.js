@@ -34,13 +34,25 @@ describe('asn1.js DER encoder', function() {
     this.real();
   }, 0, '0900');
 
-  test('should encode real number', function () {
+  test('should encode real Infinity', function () {
+    this.real();
+  }, Infinity, '090140');
+
+  test('should encode real -Infinity', function () {
+    this.real();
+  }, -Infinity, '090141');
+
+  test('should encode real NaN', function () {
+    this.real();
+  }, NaN, '090142');
+
+  test('should encode real number 1', function () {
+    this.real();
+  }, 1, '09053331652b30');
+
+  test('should encode real number float', function () {
     this.real();
   }, 1.2, '090733312e32652b30');
-
-  test('should encode real number', function () {
-    this.real();
-  }, 1, '090733312e32652b30');
 
   test('should encode objDesc', function() {
     this.objDesc();
