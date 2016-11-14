@@ -84,7 +84,6 @@ describe('asn1.js DER decoder', function() {
     );
   }, '30800101ff0000', { 'key': true });
 
-
   test('should decode real zero', function() {
     this.real();
   }, '0900', 0);
@@ -116,6 +115,7 @@ describe('asn1.js DER decoder', function() {
   test('should decode real 1 (nr1)', function() {
     this.real();
   }, '09020131', 1);
+
 
   test('should decode objDesc', function() {
     this.objDesc();
