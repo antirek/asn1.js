@@ -7,6 +7,7 @@ var jsonEqual = fixtures.jsonEqual;
 var Buffer = require('buffer').Buffer;
 
 describe('asn1.js models', function() {
+
   describe('plain use', function() {
     it('should encode submodel', function() {
       var SubModel = asn1.define('SubModel', function() {
@@ -124,5 +125,45 @@ describe('asn1.js models', function() {
     });
 
   });
+
+  describe('switch use', function() {
+    it('should encode/decode', function() {
+      var Model1Data = asn1.define('Model1Data', function () {
+          this.utf8str();
+      });
+      
+      var Model2Data = asn1.define('Model2Data', function () {
+          this.int();
+      });
+
+      var Model = asn1.define('Model', function () {
+          this.obj(
+              this.key('id').int(),
+              this.key('type').numstr(),
+              this.key('data').switch('type', {
+                  '12': Model1Data,
+                  '15': Model2Data
+              })
+          )
+      });
+
+      /*
+      var data1 = {id: 1, type: '12', data: 'lopata'};
+      var res1 = Model.encode(data1, 'der');
+      console.log(res1);
+
+      var data2 = {id: 1, type: '15', data: 10};
+      var res2 = Model.encode(data2, 'der');
+      console.log(res2);
+
+      var message = '300100';
+      var value1 = Model.decode(message, 'der');
+      console.log(value1);
+      */
+
+    });
+
+  });
+
 });
 
