@@ -7,7 +7,7 @@ var jsonEqual = fixtures.jsonEqual;
 var Buffer = require('buffer').Buffer;
 
 describe('asn1.js models', function() {
-
+  
   describe('plain use', function() {
     it('should encode submodel', function() {
       var SubModel = asn1.define('SubModel', function() {
@@ -125,7 +125,8 @@ describe('asn1.js models', function() {
     });
 
   });
-
+  
+  
   describe('switch use', function() {
     it('should encode/decode', function() {
       var Model1Data = asn1.define('Model1Data', function () {
@@ -137,32 +138,31 @@ describe('asn1.js models', function() {
       });
 
       var Model = asn1.define('Model', function () {
-          this.obj(
+          this.seq().obj(
               this.key('id').int(),
               this.key('type').numstr(),
               this.key('data').switch('type', {
-                  '12': Model1Data,
-                  '15': Model2Data
+                  '1': Model1Data,
+                  '2': Model2Data
               })
-          )
+          );
       });
 
-      /*
-      var data1 = {id: 1, type: '12', data: 'lopata'};
-      var res1 = Model.encode(data1, 'der');
-      console.log(res1);
+      var data1 = {id: 1, type: '1', data: 'lopata'};
+      assert.deepEqual(Model.encode(data1, 'der'), 
+        new Buffer('300e0201011201310c066c6f70617461','hex'));
+      
+      var data2 = {id: 1, type: '2', data: 10};
+      var message = new Buffer('300902010112013202010a','hex');
+      var value = Model.decode(message, 'der');
 
-      var data2 = {id: 1, type: '15', data: 10};
-      var res2 = Model.encode(data2, 'der');
-      console.log(res2);
-
-      var message = '300100';
-      var value1 = Model.decode(message, 'der');
-      console.log(value1);
-      */
+      assert.deepEqual(data2, {
+        id: value.id.toString(), 
+        type: value.type, 
+        data: value.data.toString()
+      });            
 
     });
-
   });
 
 });
