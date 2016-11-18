@@ -31,7 +31,7 @@ describe('asn1.js ping/pong', function() {
 
     test('objDesc', function() {
       this.objDesc()
-    }, new Buffer('hello'));
+    }, 'hello');
 
     test('bitstr', function() {
       this.bitstr();
