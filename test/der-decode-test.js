@@ -51,6 +51,14 @@ describe('asn1.js DER decoder', function() {
     });
   }
 
+  function testIsNaN(name, model, inputHex, expected) {
+    it(name, function() {
+      var M = asn1.define('Model', model);
+      var decoded = M.decode(new Buffer(inputHex,'hex'), 'der');
+      assert.equal(isNaN(decoded), isNaN(expected));
+    });
+  }
+
   test('should decode choice', function() {
     this.choice({
       apple: this.bool(),
@@ -75,6 +83,43 @@ describe('asn1.js DER decoder', function() {
       this.key('key').bool()
     );
   }, '30800101ff0000', { 'key': true });
+
+  test('should decode real zero', function() {
+    this.real();
+  }, '0900', 0);
+
+  testIsNaN('should decode real NaN', function() {
+    this.real();
+  }, '090142', NaN);
+
+  test('should decode real Infinity', function() {
+    this.real();
+  }, '090140', Infinity);
+
+  test('should decode real -Infinity', function() {
+    this.real();
+  }, '090141', -Infinity);
+
+  test('should decode real 1 (nr3)', function() {
+    this.real();
+  }, '090603312e452b30', 1);
+
+  test('should decode real 1.2 (nr3)', function() {
+    this.real();
+  }, '090703312e32452b30', 1.2);
+
+  test('should decode real 1.2 (nr2)', function() {
+    this.real();
+  }, '090402312e32', 1.2);
+
+  test('should decode real 1 (nr1)', function() {
+    this.real();
+  }, '09020131', 1);
+
+
+  test('should decode objDesc', function() {
+    this.objDesc();
+  }, '0703323830', new Buffer('280'));
 
   test('should decode bmpstr', function() {
     this.bmpstr();
