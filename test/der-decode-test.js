@@ -119,7 +119,7 @@ describe('asn1.js DER decoder', function() {
 
   test('should decode objDesc', function() {
     this.objDesc();
-  }, '0703323830', new Buffer('280'));
+  }, '0703323830', '280');
 
   test('should decode bmpstr', function() {
     this.bmpstr();
