@@ -48,11 +48,27 @@ describe('asn1.js DER encoder', function() {
 
   test('should encode real number 1', function() {
     this.real();
-  }, 1, '090603312e452b30');
+  }, 1, '09020131');
 
-  test('should encode real number float', function() {
+  test('should encode real number 2578', function() {
+    this.real();
+  }, 2578, '09050132353738');
+
+  test('should encode real number float 1.2 to 1.2E+0', function() {
     this.real();
   }, 1.2, '090703312e32452b30');
+
+  test('should encode real number float 1.45343434 to 1.45343434E+0', function() {
+    this.real();
+  }, 1.45343434, '090e03312e3435333433343334452b30');
+
+  test('should encode real number float 1453434.34 to 1.45343434E+6', function() {
+    this.real();
+  }, 1453434.34, '090e03312e3435333433343334452b36');
+
+  test('should encode real number float 1453434.34 to 1.45343434E+6', function() {
+    this.real();
+  }, 0.00000000004, '090703342e452d3131');
 
   test('should encode objDesc', function() {
     this.objDesc();
