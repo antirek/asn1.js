@@ -66,7 +66,7 @@ describe('asn1.js DER encoder', function() {
     this.real();
   }, 1453434.34, '090e03312e3435333433343334452b36');
 
-  test('should encode real number float 1453434.34 to 1.45343434E+6', function() {
+  test('should encode real number float 0.00000000004 to 0.4E-11', function() {
     this.real();
   }, 0.00000000004, '090703342e452d3131');
 
