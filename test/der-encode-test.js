@@ -86,6 +86,14 @@ describe('asn1.js DER encoder', function() {
     this.octstr().size(3, 7);
   }, new Buffer('28010'), '04053238303130');
 
+  test('should encode int in interval 1', function() {
+    this.int().size(0, 65535);
+  }, 10, '02010a');
+
+  test('should encode int in interval 2', function() {
+    this.int().size(100, 65535);
+  }, 3000, '02020bb8');
+
   test('should encode choice', function() {
     this.choice({
       apple: this.bool(),

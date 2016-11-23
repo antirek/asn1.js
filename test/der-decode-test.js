@@ -132,6 +132,12 @@ describe('asn1.js DER decoder', function() {
     this.octstr().size(3,7);
   }, '04053238303130', new Buffer('28010'));
 
+  /*
+  test('should decode int in interval', function() {
+    this.int().size(10,90);
+  }, '02010a', 0x0a);
+  */
+
   test('should decode bmpstr', function() {
     this.bmpstr();
   }, '1e26004300650072007400690066006900630061' +
