@@ -116,7 +116,6 @@ describe('asn1.js DER decoder', function() {
     this.real();
   }, '09020131', 1);
 
-
   test('should decode objDesc', function() {
     this.objDesc();
   }, '0703323830', '280');
@@ -124,6 +123,14 @@ describe('asn1.js DER decoder', function() {
   test('should decode octstr', function() {
     this.octstr();
   }, '0403323830', new Buffer('280'));
+
+  test('should decode octstr with size', function() {
+    this.octstr().size(3);
+  }, '0403323830', new Buffer('280'));
+
+  test('should decode octstr with size in interval', function() {
+    this.octstr().size(3,7);
+  }, '04053238303130', new Buffer('28010'));
 
   test('should decode bmpstr', function() {
     this.bmpstr();

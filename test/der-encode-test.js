@@ -78,6 +78,14 @@ describe('asn1.js DER encoder', function() {
     this.octstr();
   }, new Buffer('280'), '0403323830');
 
+  test('should encode octstr with size', function() {
+    this.octstr().size(3);
+  }, new Buffer('280'), '0403323830');
+
+  test('should encode octstr with size in interval', function() {
+    this.octstr().size(3, 7);
+  }, new Buffer('28010'), '04053238303130');
+
   test('should encode choice', function() {
     this.choice({
       apple: this.bool(),
