@@ -94,6 +94,10 @@ describe('asn1.js DER encoder', function() {
     this.int(100, 65535);
   }, 3000, '02020bb8');
 
+   test('should encode int in interval 3', function() {
+    this.int(100, 65535);
+  }, 30000000000000, '020300e000');
+
   test('should encode choice', function() {
     this.choice({
       apple: this.bool()

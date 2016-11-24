@@ -59,6 +59,14 @@ describe('asn1.js DER decoder', function() {
     });
   }
 
+  function testBN(name, model, inputHex, expected) {
+    it(name, function() {
+      var M = asn1.define('Model', model);
+      var decoded = M.decode(new Buffer(inputHex,'hex'), 'der');
+      assert.deepEqual(decoded.toString(), expected.toString());
+    });
+  } 
+
   test('should decode choice', function() {
     this.choice({
       apple: this.bool(),
@@ -132,11 +140,13 @@ describe('asn1.js DER decoder', function() {
     this.octstr(3,7);
   }, '04053238303130', new Buffer('28010'));
 
-/*
-  test('should decode int in interval', function() {
+  testBN('should decode int in interval', function() {
     this.int(10,90);
   }, '02010a', new asn1.bignum(10));
-*/
+
+  testBN('should decode int in interval', function() {
+    this.int(10,90);
+  }, '0203989680', new asn1.bignum(10000000));
 
   test('should decode bmpstr', function() {
     this.bmpstr();
