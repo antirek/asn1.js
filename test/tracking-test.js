@@ -4,7 +4,7 @@ var fixtures = require('./fixtures');
 var jsonEqual = fixtures.jsonEqual;
 
 describe('asn1.js tracking', function() {
-  it('should track nested offsets', () => {
+  it('should track nested offsets', function() {
     var B = asn1.define('B', function() {
       this.seq().obj(
         this.key('x').int(),

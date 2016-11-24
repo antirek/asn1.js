@@ -79,24 +79,24 @@ describe('asn1.js DER encoder', function() {
   }, new Buffer('280'), '0403323830');
 
   test('should encode octstr with size', function() {
-    this.octstr().size(3);
+    this.octstr(3);
   }, new Buffer('280'), '0403323830');
 
   test('should encode octstr with size in interval', function() {
-    this.octstr().size(3, 7);
+    this.octstr(3,7);
   }, new Buffer('28010'), '04053238303130');
 
   test('should encode int in interval 1', function() {
-    this.int().size(0, 65535);
+    this.int(0, 65535);
   }, 10, '02010a');
 
   test('should encode int in interval 2', function() {
-    this.int().size(100, 65535);
+    this.int(100, 65535);
   }, 3000, '02020bb8');
 
   test('should encode choice', function() {
     this.choice({
-      apple: this.bool(),
+      apple: this.bool()
     });
   }, { type: 'apple', value: true }, '0101ff');
 
@@ -198,7 +198,7 @@ describe('asn1.js DER encoder', function() {
   it('should not require encoder param', function() {
      var M = asn1.define('Model', function() {
        this.choice({
-         apple: this.bool(),
+         apple: this.bool()
        });
      });
      // Note no encoder specified, defaults to 'der'

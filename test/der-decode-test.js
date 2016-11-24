@@ -125,18 +125,18 @@ describe('asn1.js DER decoder', function() {
   }, '0403323830', new Buffer('280'));
 
   test('should decode octstr with size', function() {
-    this.octstr().size(3);
+    this.octstr(3);
   }, '0403323830', new Buffer('280'));
 
   test('should decode octstr with size in interval', function() {
-    this.octstr().size(3,7);
+    this.octstr(3,7);
   }, '04053238303130', new Buffer('28010'));
 
-  /*
+/*
   test('should decode int in interval', function() {
-    this.int().size(10,90);
-  }, '02010a', 0x0a);
-  */
+    this.int(10,90);
+  }, '02010a', new asn1.bignum(10));
+*/
 
   test('should decode bmpstr', function() {
     this.bmpstr();
