@@ -19,7 +19,7 @@ describe('asn1.js ping/pong', function() {
   describe('primitives', function() {
     test('bigint', function() {
       this.int();
-    }, new asn1.bignum('0102030405060708', 16));
+    }, new asn1.bignum('0102030405060708', 16), new asn1.bignum('0102030405060708', 16).toString());
 
     test('enum', function() {
       this.enum({ 0: 'hello', 1: 'world' });
