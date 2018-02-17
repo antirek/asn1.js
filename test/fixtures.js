@@ -1,4 +1,7 @@
-var assert = require('assert');
+'use strict';
+/* global describe it */
+
+const assert = require('assert');
 
 function jsonEqual(a, b) {
   assert.deepEqual(JSON.parse(JSON.stringify(a)),

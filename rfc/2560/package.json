@@ -1,6 +1,6 @@
 {
   "name": "asn1.js-rfc2560",
-  "version": "4.0.3",
+  "version": "5.0.0",
   "description": "RFC2560 structures for asn1.js",
   "main": "index.js",
   "repository": {
@@ -12,6 +12,9 @@
     "rfc2560",
     "der"
   ],
+  "scripts": {
+    "test": "mocha --reporter=spec test/*-test.js"
+  },
   "author": "Fedor Indutny",
   "license": "MIT",
   "bugs": {
@@ -19,9 +22,12 @@
   },
   "homepage": "https://github.com/indutny/asn1.js",
   "dependencies": {
-    "asn1.js-rfc5280": "^1.2.0"
+    "asn1.js-rfc5280": "^3.0.0"
   },
   "peerDependencies": {
-    "asn1.js": "^4.4.0"
+    "asn1.js": "^5.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^4.0.1"
   }
 }
