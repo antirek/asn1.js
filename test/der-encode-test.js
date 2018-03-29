@@ -212,4 +212,23 @@ describe('asn1.js DER encoder', function() {
      const encoded = M.encode({ 'type': 'apple', 'value': true });
      assert.deepEqual(encoded, new Buffer('0101ff', 'hex'));
   });
+
+  test('should properly encode utctime', function () {
+    this.utctime();
+  }, '2016-10-01 05:00:00 UTC', '170D3136313030313035303030305A');
+
+  it('should throw error on empty date', function () {
+    const M = asn1.define('1', function () {
+      this.utctime();
+    })
+    
+    const encode = function () {
+      M.encode('')
+    };
+    //encode();
+    assert.throws(encode, Error, "Error thrown");
+
+  });
+
 });
+
