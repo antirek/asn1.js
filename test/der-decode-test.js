@@ -196,6 +196,10 @@ describe('asn1.js DER decoder', function() {
     this.iso646str();
   }, '1A0B7365707469632074616E6B', 'septic tank');
 
+  test('should decode utctime to utc ms', function() {
+    this.utctime();
+  }, '170D3136313030313035303030305A', '1475298000000');
+
   it('should decode optional seqof', function() {
     const B = asn1.define('B', function() {
       this.seq().obj(

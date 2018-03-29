@@ -230,5 +230,29 @@ describe('asn1.js DER encoder', function() {
 
   });
 
+  it('should throw error on empty date', function () {
+    let time = asn1.define('time', function () {
+      this.utctime()
+    });
+
+    let range = asn1.define('AbonentService', function () {
+      this.seq().obj(        
+        this.key('begin_time').use(time),
+        this.key('end_time').use(time)
+      );
+    });
+
+    let q = range.encode({begin_time: '2010-10-10 12:00:00 UTC', end_time: '2010-10-10 12:00:00 UTC'}, 'der');
+    
+    assert.equal(q.toString('hex'), '301e170d3130313031303132303030305a170d3130313031303132303030305a');
+
+    const encodeError = function () {
+      let q = range.encode({begin_time: '2010-10-10 12:00:00 UTC'}, 'der');
+    };
+    //encodeError();
+    assert.throws(encodeError, Error, "Error thrown");
+
+  });
+
 });
 
