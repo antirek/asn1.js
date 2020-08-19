@@ -1,5 +1,5 @@
 {
-  "name": "asn1.js",
+  "name": "@antirek/asn1.js",
   "version": "5.0.4",
   "description": "ASN.1 encoder and decoder",
   "main": "lib/asn1.js",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:indutny/asn1.js"
+    "url": "git@github.com:antirek/asn1.js"
   },
   "keywords": [
     "asn.1",
@@ -20,16 +20,16 @@
   "author": "Fedor Indutny",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/indutny/asn1.js/issues"
+    "url": "https://github.com/antirek/asn1.js/issues"
   },
-  "homepage": "https://github.com/indutny/asn1.js",
+  "homepage": "https://github.com/antirek/asn1.js",
   "devDependencies": {
     "eslint": "^4.10.0",
-    "mocha": "^2.3.4"
+    "mocha": "^2.3.4",
+    "minimalistic-assert": "^1.0.0"
   },
   "dependencies": {
     "bn.js": "^4.0.0",
-    "inherits": "^2.0.1",
-    "minimalistic-assert": "^1.0.0"
+    "inherits": "^2.0.1"
   }
 }
